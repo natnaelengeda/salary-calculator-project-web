@@ -46,26 +46,6 @@ export default function App() {
 
   return (
     <>
-      <Helmet>
-        <title>Ethiopia Salary Calculator</title>
-
-        {/* Meta Description */}
-        <meta name="description" content="Ethiopia Salary Calculator - A tool That Calculates Net Salary and Tax from the given Gross Salary" />
-
-        {/* Open Graph Tags */}
-        <meta property="og:title" content={"Ethiopia Salary Calculator"} />
-        <meta property="og:description" content={"Ethiopia Salary Calculator - A tool That Calculates Net Salary and Tax from the given Gross Salary"} />
-        <meta property="og:image" content={"./seo-image.jpg"} />
-        <meta property="og:url" content={"https://ethiopia-salary-calculator.alamondai.com"} />
-
-        {/* Twitter Tags */}
-        <meta name="twitter:title" content={"Ethiopia Salary Calculator"} />
-        <meta name="twitter:description" content={"Ethiopia Salary Calculator - A tool That Calculates Net Salary and Tax from the given Gross Salary"} />
-        <meta name="twitter:image" content={"./seo-image.jpg"} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="og:type" content="website" />
-
-      </Helmet>
       <div className="w-full h-full min-h-screen bg-gray-600 flex flex-col items-center justify-between py-5">
 
         <div className="w-full h-full flex flex-col items-center justify-start gap-10 py-6 px-5 md:px-0 font-Montserrat">
