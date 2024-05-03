@@ -67,6 +67,7 @@ export default function App() {
               <input
                 className="w-full h-12 px-5 rounded border border-gray-400 "
                 type="number"
+                placeholder="Enter Your Gross Salary"
                 value={salary}
                 onChange={(e) => setSalary(e.target.value)}
               />
