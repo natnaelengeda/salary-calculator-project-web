@@ -66,9 +66,9 @@ export default function App() {
         <meta property="og:type" content="website" />
 
       </Helmet>
-      <div className="w-full h-full min-h-screen bg-gray-600 flex flex-col items-center justify-between py-2">
+      <div className="w-full h-full min-h-screen bg-gray-600 flex flex-col items-center justify-between py-5">
 
-        <div className=" flex flex-col items-center justify-start gap-10 py-6 px-5 md:px-0 font-Montserrat">
+        <div className="w-full h-full flex flex-col items-center justify-start gap-10 py-6 px-5 md:px-0 font-Montserrat">
           {/* Main Content */}
           <div className="w-full md:w-[30rem] bg-white h-full flex flex-col gap-10 py-5 rounded-lg">
 
