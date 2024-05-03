@@ -4,6 +4,9 @@ import { useState } from "react";
 import { taxInfo } from "./data/tax";
 import { addCommaNumbers } from "./utils/addCommaNumbers";
 
+// Helmet
+import { Helmet } from "react-helmet";
+
 export default function App() {
   const [salary, setSalary] = useState<any>("");
   const [showDetails, setShowDetails] = useState(false);
@@ -42,93 +45,108 @@ export default function App() {
   }
 
   return (
-    <div className="w-full h-full min-h-screen bg-gray-600 flex flex-col items-center justify-start gap-10 py-10 px-5 md:px-0 font-Montserrat">
+    <>
+      <Helmet>
+        <title>Ethiopia Salary Calculator</title>
 
-      {/* Main Content */}
-      <div className="w-full md:w-[30rem] bg-white h-full flex flex-col gap-10 py-5 rounded-lg">
+        {/* Meta Description */}
+        <meta name="description" content="Ethiopia Salary Calculator - A tool That Calculates Net Salary and Tax from the given Gross Salary" />
 
-        {/* Logo */}
-        <div className="w-full h-full flex items-center justify-center">
-          <img
-            src="/logo.jpeg"
-            alt="Logo"
-            className="w-20 h-20 rounded-lg shadow-xl shadow-gray-300" />
-        </div>
+        {/* Open Graph Tags */}
+        <meta property="og:title" content={"Ethiopia Salary Calculator"} />
+        <meta property="og:description" content={"Ethiopia Salary Calculator - A tool That Calculates Net Salary and Tax from the given Gross Salary"} />
+        <meta property="og:image" content={"./seo-image.jpg"} />
+        <meta property="og:url" content={"https://ethiopia-salary-calculator.alamondai.com/"} />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <div className="w-full h-full min-h-screen bg-gray-600 flex flex-col items-center justify-start gap-10 py-10 px-5 md:px-0 font-Montserrat">
 
-        {/* Form */}
-        <div className="w-full h-full flex flex-col gap-10 items-start px-5">
+        {/* Main Content */}
+        <div className="w-full md:w-[30rem] bg-white h-full flex flex-col gap-10 py-5 rounded-lg">
 
-          {/* Salary Input Form */}
-          <div className="w-full h-full flex flex-col gap-5 md:gap-10">
+          {/* Logo */}
+          <div className="w-full h-full flex items-center justify-center">
+            <img
+              src="/logo.jpeg"
+              alt="Logo"
+              className="w-20 h-20 rounded-lg shadow-xl shadow-gray-300" />
+          </div>
 
-            {/* Salary */}
-            <div className="w-full h-full flex flex-col gap-2">
-              <label className="px-2" htmlFor="salary">Salary: </label>
-              <input
-                className="w-full h-12 px-5 rounded border border-gray-400 "
-                type="number"
-                placeholder="Enter Your Gross Salary"
-                value={salary}
-                onChange={(e) => setSalary(e.target.value)}
-              />
-            </div>
+          {/* Form */}
+          <div className="w-full h-full flex flex-col gap-10 items-start px-5">
 
-            {/* Butotn */}
-            <div className="w-full h-full flex ">
-              <button
-                onClick={calculateSalary}
-                className="w-full h-12 bg-[#0A5D4D] hover:bg-[#074539] text-white rounded-lg">
-                Calculate
-              </button>
+            {/* Salary Input Form */}
+            <div className="w-full h-full flex flex-col gap-5 md:gap-10">
+
+              {/* Salary */}
+              <div className="w-full h-full flex flex-col gap-2">
+                <label className="px-2" htmlFor="salary">Salary: </label>
+                <input
+                  className="w-full h-12 px-5 rounded border border-gray-400 "
+                  type="number"
+                  placeholder="Enter Your Gross Salary"
+                  value={salary}
+                  onChange={(e) => setSalary(e.target.value)}
+                />
+              </div>
+
+              {/* Butotn */}
+              <div className="w-full h-full flex ">
+                <button
+                  onClick={calculateSalary}
+                  className="w-full h-12 bg-[#0A5D4D] hover:bg-[#074539] text-white rounded-lg">
+                  Calculate
+                </button>
+              </div>
+
             </div>
 
           </div>
-
         </div>
+
+        {/* Detils */}
+        {
+          showDetails &&
+          <div className="w-full md:w-[30rem] bg-white h-full flex flex-col items-center gap-10 py-5 rounded-lg">
+
+            {/* Header */}
+            <div className="w-full h-full flex flex-col items-center gap-2 px-3">
+              <h1 className="text-2xl font-bold">Result</h1>
+              <hr className="w-full" />
+            </div>
+
+            {/* Result */}
+            <div className="w-full flex flex-col gap-3 items-start px-5">
+
+              {/* Gross Salary */}
+              <div className="w-full h-full flex flex-row items-end justify-start gap-2">
+                <h1 className="text-xl font-light">Gross Salary: </h1>
+                <p className="font-semibold">{addCommaNumbers(salary)} Birr</p>
+              </div>
+
+              {/* Net Salary */}
+              <div className="w-full h-full flex flex-row items-end justify-start gap-2">
+                <h1 className="text-xl font-light">Net Salary: </h1>
+                <p className="font-semibold">{addCommaNumbers(netSalary)} Birr</p>
+              </div>
+
+              {/* Pension Money */}
+              <div className="w-full h-full flex flex-row items-end justify-start gap-2">
+                <h1 className="text-xl font-light">Pension: </h1>
+                <p className="font-semibold">{addCommaNumbers(pensionMoney)} Birr</p>
+              </div>
+
+              {/* Tax */}
+              <div className="w-full h-full flex flex-row items-end justify-start gap-2">
+                <h1 className="text-xl font-light">Tax: </h1>
+                <p className="font-semibold">{addCommaNumbers(taxedMoney)} Birr</p>
+              </div>
+
+            </div>
+
+          </div>
+        }
       </div>
-
-      {/* Detils */}
-      {
-        showDetails &&
-        <div className="w-full md:w-[30rem] bg-white h-full flex flex-col items-center gap-10 py-5 rounded-lg">
-
-          {/* Header */}
-          <div className="w-full h-full flex flex-col items-center gap-2 px-3">
-            <h1 className="text-2xl font-bold">Result</h1>
-            <hr className="w-full" />
-          </div>
-
-          {/* Result */}
-          <div className="w-full flex flex-col gap-3 items-start px-5">
-
-            {/* Gross Salary */}
-            <div className="w-full h-full flex flex-row items-end justify-start gap-2">
-              <h1 className="text-xl font-light">Gross Salary: </h1>
-              <p className="font-semibold">{addCommaNumbers(salary)} Birr</p>
-            </div>
-
-            {/* Net Salary */}
-            <div className="w-full h-full flex flex-row items-end justify-start gap-2">
-              <h1 className="text-xl font-light">Net Salary: </h1>
-              <p className="font-semibold">{addCommaNumbers(netSalary)} Birr</p>
-            </div>
-
-            {/* Pension Money */}
-            <div className="w-full h-full flex flex-row items-end justify-start gap-2">
-              <h1 className="text-xl font-light">Pension: </h1>
-              <p className="font-semibold">{addCommaNumbers(pensionMoney)} Birr</p>
-            </div>
-
-            {/* Tax */}
-            <div className="w-full h-full flex flex-row items-end justify-start gap-2">
-              <h1 className="text-xl font-light">Tax: </h1>
-              <p className="font-semibold">{addCommaNumbers(taxedMoney)} Birr</p>
-            </div>
-
-          </div>
-
-        </div>
-      }
-    </div>
+    </>
   )
 }
