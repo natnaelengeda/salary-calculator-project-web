@@ -5,7 +5,7 @@ import { taxInfo } from "./data/tax";
 import { addCommaNumbers } from "./utils/addCommaNumbers";
 
 // Helmet
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 
 export default function App() {
   const [salary, setSalary] = useState<any>("");
