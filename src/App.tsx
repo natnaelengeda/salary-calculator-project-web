@@ -22,18 +22,20 @@ export default function App() {
     let nSalary = 0;
     let tMoney = 0;
     let pMoney = 0;
+    let desc = 0;
 
     // Find the tax rate
     for (let i = 0; i < taxInfo.length; i++) {
       if (salary >= taxInfo[i].min && salary <= taxInfo[i].max) {
         tax = taxInfo[i].tax;
+        desc = taxInfo[i].desc;
         break;
       } else if (salary > taxInfo[taxInfo.length - 1].max) {
         tax = taxInfo[taxInfo.length - 1].tax;
       }
     }
 
-    tMoney = parseInt(salary) * (tax / 100);
+    tMoney = parseInt(salary) * (tax / 100) - desc;
     pMoney = parseInt(salary) * (pension / 100);
 
     nSalary = parseInt(salary) - (tMoney);

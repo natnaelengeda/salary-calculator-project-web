@@ -1,4 +1,4 @@
-export const incomeTax = [
+export const taxInfo = [
   { id: 1, min: 0, max: 600, rate: 0, dec: 0 },
   { id: 2, min: 601, max: 1650, rate: 10, dec: 60 },
   { id: 3, min: 1651, max: 3200, rate: 15, dec: 142.50 },
