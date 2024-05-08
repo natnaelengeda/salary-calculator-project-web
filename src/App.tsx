@@ -128,7 +128,7 @@ export default function App() {
 
                 {/* Tax */}
                 <div className="w-full h-full flex flex-row items-end justify-start gap-2">
-                  <h1 className="text-xl font-light">Tax: </h1>
+                  <h1 className="text-xl font-light">Income Tax: </h1>
                   <p className="font-semibold">{addCommaNumbers(taxedMoney)} Birr</p>
                 </div>
 
