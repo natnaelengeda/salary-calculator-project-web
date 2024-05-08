@@ -38,7 +38,8 @@ export default function App() {
     tMoney = parseInt(salary) * (tax / 100) - desc;
     pMoney = parseInt(salary) * (pension / 100);
 
-    nSalary = parseInt(salary) - (tMoney);
+    nSalary = parseInt(salary) - (tMoney + pMoney);
+
 
     setNetSalary(nSalary.toString());
     setTaxedMoney(tMoney.toString());
