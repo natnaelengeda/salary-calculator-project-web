@@ -3,9 +3,7 @@ import { useState } from "react";
 // data
 import { taxInfo } from "./data/tax";
 import { addCommaNumbers } from "./utils/addCommaNumbers";
-
-// Helmet
-// import { Helmet } from "react-helmet";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function App() {
   const [salary, setSalary] = useState<any>("");
@@ -16,7 +14,14 @@ export default function App() {
   const [pensionMoney, setPensionMoney] = useState("");
 
   const calculateSalary = () => {
+    if (salary >= 1000000) {
+      toast('Stop Playing Bro,', {
+        icon: '😂😂',
+      });
+    }
+
     setShowDetails(true);
+
     const pension = 7;
     let tax = 0;
     let nSalary = 0;
@@ -32,6 +37,7 @@ export default function App() {
         break;
       } else if (salary > taxInfo[taxInfo.length - 1].max) {
         tax = taxInfo[taxInfo.length - 1].tax;
+        desc = taxInfo[taxInfo.length - 1].desc;
       }
     }
 
@@ -40,17 +46,18 @@ export default function App() {
 
     nSalary = parseInt(salary) - (tMoney + pMoney);
 
-
     setNetSalary(nSalary.toString());
     setTaxedMoney(tMoney.toString());
     setPensionMoney(pMoney.toString());
-
   }
 
   return (
     <>
-      <div className="w-full h-full min-h-screen bg-gray-600 flex flex-col items-center justify-between py-5">
+      <Toaster
+        position="top-right"
+        reverseOrder={false} />
 
+      <div className="w-full h-full min-h-screen bg-gray-600 flex flex-col items-center justify-between py-5">
         <div className="w-full h-full flex flex-col items-center justify-start gap-10 py-6 px-5 md:px-0 font-Montserrat">
           {/* Main Content */}
           <div className="w-full md:w-[30rem] bg-white h-full flex flex-col gap-10 py-5 rounded-lg">
@@ -77,7 +84,9 @@ export default function App() {
                     type="number"
                     placeholder="Enter Your Gross Salary"
                     value={salary}
-                    onChange={(e) => setSalary(e.target.value)}
+                    onChange={(e) => {
+                      setSalary(e.target.value)
+                    }}
                   />
                 </div>
 
@@ -121,18 +130,17 @@ export default function App() {
                   <p className="font-semibold">{addCommaNumbers(netSalary)} Birr</p>
                 </div>
 
-                {/* Pension Money */}
-                <div className="w-full h-full flex flex-row items-end justify-start gap-2">
-                  <h1 className="text-xl font-light">Pension: </h1>
-                  <p className="font-semibold">{addCommaNumbers(pensionMoney)} Birr</p>
-                </div>
-
                 {/* Tax */}
                 <div className="w-full h-full flex flex-row items-end justify-start gap-2">
                   <h1 className="text-xl font-light">Income Tax: </h1>
                   <p className="font-semibold">{addCommaNumbers(taxedMoney)} Birr</p>
                 </div>
 
+                {/* Pension Money */}
+                <div className="w-full h-full flex flex-row items-end justify-start gap-2">
+                  <h1 className="text-xl font-light">Pension: </h1>
+                  <p className="font-semibold">{addCommaNumbers(pensionMoney)} Birr</p>
+                </div>
               </div>
 
             </div>
