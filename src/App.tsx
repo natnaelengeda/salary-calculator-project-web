@@ -163,7 +163,7 @@ export default function App() {
           </p>
           <a
             className="text-blue-400"
-            href="https://portfolio.alamondai.com"
+            href="https://natnaelengeda.tech/"
             target="_blank"
             rel="noreferrer">
             @natnaelengeda
