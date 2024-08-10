@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // data
 import { taxInfo } from "./data/tax";
 import { addCommaNumbers } from "./utils/addCommaNumbers";
 import { Toaster, toast } from "react-hot-toast";
+
+// Firebase
+import { firebase, analytics } from './utils/firebase';
 
 export default function App() {
   const [salary, setSalary] = useState<any>("");
@@ -50,6 +53,12 @@ export default function App() {
     setTaxedMoney(tMoney.toString());
     setPensionMoney(pMoney.toString());
   }
+
+  useEffect(() => {
+    firebase;
+    analytics;
+  }, []);
+
 
   return (
     <>
