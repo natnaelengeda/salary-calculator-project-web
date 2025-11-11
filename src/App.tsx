@@ -9,14 +9,14 @@ import { Toaster, toast } from "react-hot-toast";
 import { firebase, analytics } from './utils/firebase';
 
 export default function App() {
-  const [salary, setSalary] = useState<any>("");
+  const [usalary, setSalary] = useState<any>("");
   const [showDetails, setShowDetails] = useState(false);
 
   const [netSalary, setNetSalary] = useState("");
   const [taxedMoney, setTaxedMoney] = useState("");
   const [pensionMoney, setPensionMoney] = useState("");
 
-  const calculateSalary = () => {
+  const calculateSalary = (salary:any) => {
     if (salary >= 1000000) {
       toast('Stop Playing Bro,', {
         icon: '😂😂',
@@ -63,7 +63,7 @@ export default function App() {
   return (
     <>
       <Toaster
-        position="top-right"
+        position="top-center"
         reverseOrder={false} />
 
       <div className="w-full h-full min-h-screen bg-gray-600 flex flex-col items-center justify-between py-5">
@@ -89,20 +89,24 @@ export default function App() {
                 <div className="w-full h-full flex flex-col gap-2">
                   <label className="px-2" htmlFor="salary">Salary: </label>
                   <input
-                    className="w-full h-12 px-5 rounded border border-gray-400 "
-                    type="number"
-                    placeholder="Enter Your Gross Salary"
-                    value={salary}
-                    onChange={(e) => {
-                      setSalary(e.target.value)
-                    }}
+                  className="w-full h-12 px-5 rounded border border-gray-400 "
+                  type="text"
+                  placeholder="Enter Your Gross Salary"
+                  value={usalary ? addCommaNumbers(usalary) : ""}
+                  onChange={(e) => {
+                    // keep only digits in state, display formatted with commas
+                    const raw = e.target.value.replace(/[^0-9]/g, "");
+                    console.log(raw);
+                    setSalary(raw);
+                    calculateSalary(raw);
+                  }}
                   />
                 </div>
 
                 {/* Butotn */}
                 <div className="w-full h-full flex ">
                   <button
-                    onClick={calculateSalary}
+                    onClick={()=>calculateSalary(usalary)}
                     className="w-full h-12 bg-[#0A5D4D] hover:bg-[#074539] text-white rounded-lg">
                     Calculate
                   </button>
@@ -130,7 +134,7 @@ export default function App() {
                 {/* Gross Salary */}
                 <div className="w-full h-full flex flex-row items-end justify-start gap-2">
                   <h1 className="text-xl font-light">Gross Salary: </h1>
-                  <p className="font-semibold">{addCommaNumbers(salary)} Birr</p>
+                  <p className="font-semibold">{addCommaNumbers(usalary)} Birr</p>
                 </div>
 
                 {/* Net Salary */}
@@ -163,7 +167,7 @@ export default function App() {
           </p>
           <a
             className="text-blue-400"
-            href="https://natnaelengeda.tech/"
+            href="https://natnaelengeda.site/"
             target="_blank"
             rel="noreferrer">
             @natnaelengeda
